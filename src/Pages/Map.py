@@ -6,7 +6,7 @@ from config.db import conn
 from Machine.MapAnalitic import generar_analisis_criminalidad
 
 
-st.set_page_config(page_title="Mapa de Criminalidad", page_icon="./assets/Logo-removebg.png")
+st.set_page_config(page_title="Mapa de Criminalidad", page_icon="././assets/LogoNobg.png")
 
 def get_unique_values():
     docs = conn.aggregate([
