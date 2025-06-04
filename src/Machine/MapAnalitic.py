@@ -3,7 +3,7 @@ import pandas as pd
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key="",
+    api_key="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",
 )
 
 def generar_analisis_criminalidad(df: pd.DataFrame, distritos, dias, categorias) -> str:
