@@ -4,9 +4,12 @@ import pydeck as pdk
 from datetime import time
 from config.db import conn
 from Machine.MapAnalitic import generar_analisis_criminalidad
+import openai  
 
 
 st.set_page_config(page_title="Mapa de Criminalidad", page_icon="././assets/LogoNobg.png")
+
+openai.api_key = "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"
 
 def get_unique_values():
     docs = conn.aggregate([
