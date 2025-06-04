@@ -55,6 +55,27 @@ st.markdown("""
             font-size: 3.5rem !important;
             text-align: center;
             margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .title-text .glow {
+            text-shadow: 0 0 10px rgba(255, 150, 145, 0.8), 
+                         0 0 20px rgba(245, 36, 24, 0.6),
+                         0 0 30px rgba(245, 36, 24, 0.4);
+            animation: glow-pulse 2s infinite alternate;
+        }
+        
+        @keyframes glow-pulse {
+            from {
+                text-shadow: 0 0 10px rgba(255, 150, 145, 0.8), 
+                             0 0 20px rgba(245, 36, 24, 0.6),
+                             0 0 30px rgba(245, 36, 24, 0.4);
+            }
+            to {
+                text-shadow: 0 0 15px rgba(255, 150, 145, 1), 
+                             0 0 25px rgba(245, 36, 24, 0.8),
+                             0 0 35px rgba(245, 36, 24, 0.6);
+            }
         }
         
         .subtitle-text {
@@ -128,7 +149,7 @@ st.markdown("""
 
 st.markdown("""
     <div style="text-align: center;">
-        <h1 class="title-text fade-in">Crime<span class="highlight">.io</span></h1>
+        <h1 class="title-text fade-in">Crime<span class="highlight glow">.io</span></h1>
         <p class="subtitle-text fade-in" style="animation-delay: 0.2s">Predictive Crime Analytics Platform</p>
     </div>
 """, unsafe_allow_html=True)

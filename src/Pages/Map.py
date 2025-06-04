@@ -4,19 +4,21 @@ import pydeck as pdk
 from datetime import time
 from config.db import conn
 from Machine.MapAnalitic import generar_analisis_criminalidad
+import openai  
 
+st.set_page_config(page_title="Crime Map", page_icon="././assets/LogoNobg.png")
 
-st.set_page_config(page_title="Mapa de Criminalidad", page_icon="././assets/LogoNobg.png")
+openai.api_key = "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"
 
 def get_unique_values():
     docs = conn.aggregate([
         {
             "$group": {
                 "_id": None,
-                "distritos": {"$addToSet": "$PdDistrict"},
-                "dias": {"$addToSet": "$DayOfWeek"},
-                "categorias": {"$addToSet": "$Category"},
-                "resoluciones": {"$addToSet": "$Resolution"},
+                "districts": {"$addToSet": "$PdDistrict"},
+                "days": {"$addToSet": "$DayOfWeek"},
+                "categories": {"$addToSet": "$Category"},
+                "resolutions": {"$addToSet": "$Resolution"},
             }
         }
     ])
@@ -24,15 +26,15 @@ def get_unique_values():
     if result:
         r = result[0]
         return (
-            sorted(r["distritos"]),
-            sorted(r["dias"]),
-            sorted(r["categorias"]),
-            sorted([res for res in r["resoluciones"] if res])  
+            sorted(r["districts"]),
+            sorted(r["days"]),
+            sorted(r["categories"]),
+            sorted([res for res in r["resolutions"] if res])  
         )
     return [], [], [], []
 
 @st.cache_data
-def load_filtered_data(distritos, dias, categorias, resoluciones, hora_min, hora_max):
+def load_filtered_data(districts, days, categories, resolutions, hour_min, hour_max):
     try:
         pipeline = [
             {
@@ -43,11 +45,11 @@ def load_filtered_data(distritos, dias, categorias, resoluciones, hora_min, hora
             },
             {
                 "$match": {
-                    "PdDistrict": {"$in": distritos},
-                    "DayOfWeek": {"$in": dias},
-                    "Category": {"$in": categorias},
-                    "Resolution": {"$in": resoluciones},
-                    "hour": {"$gte": hora_min.hour, "$lte": hora_max.hour}
+                    "PdDistrict": {"$in": districts},
+                    "DayOfWeek": {"$in": days},
+                    "Category": {"$in": categories},
+                    "Resolution": {"$in": resolutions},
+                    "hour": {"$gte": hour_min.hour, "$lte": hour_max.hour}
                 }
             },
             {"$limit": 1000}
@@ -69,73 +71,73 @@ def load_filtered_data(distritos, dias, categorias, resoluciones, hora_min, hora
         return df
 
     except Exception as e:
-        st.error(f"Error al cargar datos desde MongoDB: {str(e)}")
+        st.error(f"Error loading data from MongoDB: {str(e)}")
         return pd.DataFrame()
 
-st.title("🚨 Mapa de Criminalidad")
+st.title("🚨 Crime Map")
 st.markdown("""
-**Visualización interactiva de incidentes**  
-Utiliza los filtros para explorar cómo, cuándo y dónde se manifiestan los distintos tipos de criminalidad en la ciudad de san francisco.
+**Interactive visualization of incidents**  
+Use the filters to explore how, when, and where different types of crimes occur in the city of San Francisco.
 """)
 
-st.sidebar.header("Filtros")
+st.sidebar.header("Filters")
 
-distritos_disponibles, dias_disponibles, categorias_disponibles, resoluciones_disponibles = get_unique_values()
+available_districts, available_days, available_categories, available_resolutions = get_unique_values()
 
-distrito_default = distritos_disponibles[0] if distritos_disponibles else ""
-distritos = st.sidebar.multiselect(
-    "Distritos",
-    options=distritos_disponibles,
-    default=[distrito_default] if distrito_default else []
+default_district = available_districts[0] if available_districts else ""
+districts = st.sidebar.multiselect(
+    "Districts",
+    options=available_districts,
+    default=[default_district] if default_district else []
 )
 
-dia_default = dias_disponibles[0] if dias_disponibles else ""
-dias = st.sidebar.multiselect(
-    "Días de semana",
-    options=dias_disponibles,
-    default=[dia_default] if dia_default else []
+default_day = available_days[0] if available_days else ""
+days = st.sidebar.multiselect(
+    "Days of the week",
+    options=available_days,
+    default=[default_day] if default_day else []
 )
 
-categoria_default = categorias_disponibles[0] if categorias_disponibles else ""
-categorias = st.sidebar.multiselect(
-    "Categorías",
-    options=categorias_disponibles,
-    default=[categoria_default] if categoria_default else []
+default_category = available_categories[0] if available_categories else ""
+categories = st.sidebar.multiselect(
+    "Categories",
+    options=available_categories,
+    default=[default_category] if default_category else []
 )
 
-resolucion_default = resoluciones_disponibles[0] if resoluciones_disponibles else ""
-resoluciones = st.sidebar.multiselect(
-    "Resoluciones",
-    options=resoluciones_disponibles,
-    default=[resolucion_default] if resolucion_default else []
+default_resolution = available_resolutions[0] if available_resolutions else ""
+resolutions = st.sidebar.multiselect(
+    "Resolutions",
+    options=available_resolutions,
+    default=[default_resolution] if default_resolution else []
 )
 
-hora_min, hora_max = st.sidebar.slider(
-    "Rango horario",
+hour_min, hour_max = st.sidebar.slider(
+    "Time range",
     min_value=time(0, 0),
     max_value=time(23, 59),
     value=(time(9, 0), time(17, 0))
 )
 
-if distritos and dias and categorias and resoluciones:
-    df = load_filtered_data(distritos, dias, categorias, resoluciones, hora_min, hora_max)
+if districts and days and categories and resolutions:
+    df = load_filtered_data(districts, days, categories, resolutions, hour_min, hour_max)
 
     if df.empty:
-        st.warning("No se encontraron datos con los filtros seleccionados.")
+        st.warning("No data found with the selected filters.")
     else:
-        total_registros = len(df)
-        st.subheader("📊 Estadísticas")
+        total_records = len(df)
+        st.subheader("📊 Statistics")
         col1, col2, col3, col4 = st.columns(4)
-        col1.metric("Incidentes registrados", total_registros)
-        col2.metric("Distritos", len(distritos))
-        col3.metric("Días", len(dias))
-        col4.metric("Categorías", len(categorias))
+        col1.metric("Incidents", total_records)
+        col2.metric("Districts", len(districts))
+        col3.metric("Days", len(days))
+        col4.metric("Categories", len(categories))
 
-        max_puntos = 1000
-        if total_registros >= max_puntos:
-            st.warning(f"Mostrando solo {max_puntos} de {total_registros} registros. Usa filtros más específicos para reducir la cantidad de datos.")
+        max_points = 1000
+        if total_records >= max_points:
+            st.warning(f"Only showing {max_points} out of {total_records} records. Use more specific filters to narrow down the data.")
 
-        data_deck = df.head(max_puntos)[["X", "Y", "PdDistrict", "Address", "Dates", "Category", "Descript", "Resolution"]].to_dict('records')
+        data_deck = df.head(max_points)[["X", "Y", "PdDistrict", "Address", "Dates", "Category", "Descript", "Resolution"]].to_dict('records')
 
         layer = pdk.Layer(
             "ScatterplotLayer",
@@ -154,72 +156,66 @@ if distritos and dias and categorias and resoluciones:
         )
 
         tooltip = {
-            "html": "<b>Distrito:</b> {PdDistrict}<br>"
-                    "<b>Categoría:</b> {Category}<br>"
-                    "<b>Descripción:</b> {Descript}<br>"
-                    "<b>Resolución:</b> {Resolution}<br>"
-                    "<b>Dirección:</b> {Address}",
+            "html": "<b>District:</b> {PdDistrict}<br>"
+                    "<b>Category:</b> {Category}<br>"
+                    "<b>Description:</b> {Descript}<br>"
+                    "<b>Resolution:</b> {Resolution}<br>"
+                    "<b>Address:</b> {Address}",
             "style": {
                 "backgroundColor": "steelblue",
                 "color": "white"
             }
         }
 
-       
-
         try:
             deck = pdk.Deck(
-            map_style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",  
-            initial_view_state=view_state,
-            layers=[layer],
-            tooltip=tooltip
-          )
+                map_style="https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+                initial_view_state=view_state,
+                layers=[layer],
+                tooltip=tooltip
+            )
             st.pydeck_chart(deck)
         except Exception as e:
-            st.error(f"Error al mostrar el mapa: {str(e)}")
+            st.error(f"Error displaying map: {str(e)}")
 
-
-        st.markdown("### 🗂️ Tabla de Incidentes")
+        st.markdown("### 🗂️ Incident Table")
         st.markdown("""
-        Esta tabla muestra los incidentes delictivos que cumplen con los criterios seleccionados en los filtros.  
-        Incluye información sobre la fecha, el día de la semana, el distrito, la categoría del crimen, una breve descripción, la resolución del caso y la dirección del incidente.""")
+        This table shows the crime incidents that match the selected filter criteria.  
+        It includes information about the date, day of the week, district, crime category, a short description, resolution status, and address.
+        """)
         st.dataframe(df[["Dates", "DayOfWeek", "PdDistrict", "Category", "Descript", "Resolution", "Address"]].head(50))
 
-        st.markdown("### 📝 Reporte basado en filtros aplicados")
+        st.markdown("### 📝 Report based on applied filters")
 
-        reporte = f"""
-        **Resumen de búsqueda:**
+        report = f"""
+        **Search Summary:**
 
-        - Se seleccionaron **{len(distritos)}** distrito(s): {', '.join(distritos)}  
-        - Se seleccionaron **{len(dias)}** día(s): {', '.join(dias)}  
-        - Se seleccionaron **{len(categorias)}** categoría(s): {', '.join(categorias)}  
-        - Se seleccionaron **{len(resoluciones)}** resolución(es): {', '.join(resoluciones)}  
-        - Se filtró por el rango horario entre **{hora_min.strftime('%H:%M')}** y **{hora_max.strftime('%H:%M')}**  
-        - Se encontraron **{total_registros}** incidentes que cumplen con los criterios
+        - **{len(districts)}** district(s) selected: {', '.join(districts)}  
+        - **{len(days)}** day(s) selected: {', '.join(days)}  
+        - **{len(categories)}** category(ies) selected: {', '.join(categories)}  
+        - **{len(resolutions)}** resolution(s) selected: {', '.join(resolutions)}  
+        - Filtered by time range between **{hour_min.strftime('%H:%M')}** and **{hour_max.strftime('%H:%M')}**  
+        - Found **{total_records}** matching incidents
 
         """
 
+        st.markdown(report)
 
-        st.markdown(reporte)
+        with st.spinner("Generating intelligent analysis with AI"):
+            ia_analysis = generar_analisis_criminalidad(df, districts, days, categories)
 
-        with st.spinner("Generando análisis inteligente con IA..."):
-         analisis_ia = generar_analisis_criminalidad(df, distritos, dias, categorias)
-
-        st.markdown("### 🤖 Análisis inteligente (IA)")
-
-        st.markdown(analisis_ia)
+        st.markdown("### 🤖 Intelligent Analysis")
+        st.markdown(ia_analysis)
 
         st.download_button(
-        "Descargar CSV",
-        df.to_csv(index=False),
-        file_name="incidentes_filtrados.csv",
-        mime="text/csv"
-    )
+            "Download CSV",
+            df.to_csv(index=False),
+            file_name="filtered_incidents.csv",
+            mime="text/csv"
+        )
 
 else:
-    st.info("Selecciona al menos un distrito, día, categoría y resolución para visualizar los datos.")
-
-
+    st.info("Select at least one district, day, category, and resolution to view data.")
 
 st.markdown(
     """

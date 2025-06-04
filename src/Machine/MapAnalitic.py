@@ -3,7 +3,7 @@ import pandas as pd
 
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key="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",
+    api_key="",
 )
 
 def generar_analisis_criminalidad(df: pd.DataFrame, distritos, dias, categorias) -> str:
@@ -28,7 +28,7 @@ Solicito:
 2. **Recomendación para autoridades** (máx 2 líneas).
 3. **Consejo ciudadano** (máx 1 línea).
 
-Respuesta en español y formato markdown.
+Respuesta en ingles y en formato txt. esto es obligatorio no envies ningun otro formato y no lo mandes dentro de un bloque de código.
     """
 
     try:
