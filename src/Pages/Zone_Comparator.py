@@ -52,20 +52,20 @@ st.plotly_chart(fig_bar, use_container_width=True)
 
 
 # Tipos de delitos frecuentes
-st.subheader("🕵️‍♂️ Tipos de delitos más frecuentes (Top 5)")
+st.subheader("🕵️‍♂️ Tipos de delitos más frecuentes (Top 10)")
 
 col1, col2 = st.columns(2)
 
 with col1:
     st.markdown(f"**{zone1}**")
-    top_zone1 = df_zone1["Category"].value_counts().head(5)
+    top_zone1 = df_zone1["Category"].value_counts().head(10)
     fig1 = px.bar(top_zone1, x=top_zone1.values, y=top_zone1.index, orientation='h',
                   labels={'x': 'Cantidad', 'index': 'Delito'}, title=f"Top delitos en {zone1}")
     st.plotly_chart(fig1, use_container_width=True)
 
 with col2:
     st.markdown(f"**{zone2}**")
-    top_zone2 = df_zone2["Category"].value_counts().head(5)
+    top_zone2 = df_zone2["Category"].value_counts().head(10)
     fig2 = px.bar(top_zone2, x=top_zone2.values, y=top_zone2.index, orientation='h',
                   labels={'x': 'Cantidad', 'index': 'Delito'}, title=f"Top delitos en {zone2}")
     st.plotly_chart(fig2, use_container_width=True)
