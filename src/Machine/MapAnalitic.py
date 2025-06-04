@@ -28,7 +28,7 @@ Solicito:
 2. **Recomendación para autoridades** (máx 2 líneas).
 3. **Consejo ciudadano** (máx 1 línea).
 
-Respuesta en español y formato markdown.
+Respuesta en ingles y en formato txt. esto es obligatorio no envies ningun otro formato y no lo mandes dentro de un bloque de código.
     """
 
     try:
