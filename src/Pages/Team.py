@@ -155,18 +155,18 @@ def load_image(image_path):
 team = [
     {
         "name": "Zaid Pantoja Manosalva",
-        "role": "Model administrator",
-        "bio": "Apasionada por los datos, especialista en análisis predictivo y visualización avanzada.",
+        "role": "Machine Learning Specialist – ML Model Developer",
+        "bio": "Data enthusiast with a strong focus on predictive analysis and advanced data visualization. Responsible for building and training the machine learning model used in the system.",
         "image": "Zaid.jpg",  
-        "github": "https://github.com/laurafernandez",
-        "linkedin": "https://linkedin.com/in/laurafernandez",
-        "whatsapp": "https://wa.me/573211112222",  
-        "gmail": "zaid.pantoja@email.com"
+        "github": "https://github.com/Alberthzaid",
+        "linkedin": "https://www.linkedin.com/in/alberth-zaid-a42aa8222/",
+        "whatsapp": "https://wa.me/57 318 5182953",  
+        "gmail": "alberthzaid2003@gmail.com"
     },
     {
-        "name": "Andres Aviles de la rosa",
-        "role": "Backend Developer",
-        "bio": "Desarrollador backend con experiencia en Java, Spring Boot y APIs Rest.",
+        "name": "Andres Aviles de la Rosa",
+        "role": "Backend Developer – Zone Comparator Designer",
+        "bio": "Backend developer with experience in Java, Spring Boot, and RESTful APIs. In charge of implementing the Zone Comparator feature to support geographic comparisons in the system.",
         "image": "broko.jpeg",
         "github": "https://github.com/andresavilesdev",
         "linkedin": "https://www.linkedin.com/in/andresavilesdev/",
@@ -175,25 +175,26 @@ team = [
     },
     {
         "name": "Angel Gabriel Ortega Corzo",
-        "role": "UX/UI Designer",
-        "bio": "Diseñadora centrada en el usuario, con enfoque en experiencias visuales intuitivas y accesibles.",
+        "role": "Backend Developer – Interactive Map Feature Designer",
+        "bio": "User-centered designer focused on creating intuitive and accessible APIs-Rest experiences. Responsible for developing the interactive map feature for geospatial visualization.",
         "image": "Angelo.jpeg",
-        "github": "https://github.com/anaruiz",
-        "linkedin": "https://linkedin.com/in/anaruiz",
-        "whatsapp": "https://wa.me/573255556666",
-        "gmail": "angel.ortega@email.com"
+        "github": "https://github.com/Angel-ISO",
+        "linkedin": "https://www.linkedin.com/in/angel-gabriel-ortega/",
+        "whatsapp": "https://wa.me/573222946366",
+        "gmail": "angelgabrielorteg@gmail.com"
     },
     {
         "name": "Santiago Cardenas Jotty",
-        "role": "ML Engineer",
-        "bio": "Ingeniero de Machine Learning con foco en modelos de clasificación geoespacial.",
+        "role": "UI Designer – Home & Team Pages Creator",
+        "bio": "Machine Learning engineer with a passion for geospatial classification models. Designed and implemented the Home and Team pages to provide a cohesive and user-friendly interface.",
         "image": "Jottynha.jpeg",
-        "github": "https://github.com/diegotorres",
-        "linkedin": "https://linkedin.com/in/diegotorres",
+        "github": "https://github.com/santiagocard123",
+        "linkedin": "https://www.linkedin.com/in/santiago-c%C3%A1rdenas-jotty-6a93ba360/",
         "whatsapp": "https://wa.me/573243652661",
-        "gmail": "santiago.cardenas@email.com"
+        "gmail": "santiagocardenas432@gmail.com"
     }
 ]
+
 
 
 st.markdown('<div class="team-container">', unsafe_allow_html=True)
