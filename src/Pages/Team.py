@@ -47,7 +47,7 @@ html, body, [class*="css"] {
 
 .team-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap ;
     justify-content: center;
     gap: 2rem;
     padding: 2rem 5%;
@@ -155,9 +155,9 @@ def load_image(image_path):
 team = [
     {
         "name": "Zaid Pantoja Manosalva",
-        "role": "Data Scientist",
+        "role": "Model administrator",
         "bio": "Apasionada por los datos, especialista en análisis predictivo y visualización avanzada.",
-        "image": "CrimeioLogo.jpg",  
+        "image": "Zaid.jpg",  
         "github": "https://github.com/laurafernandez",
         "linkedin": "https://linkedin.com/in/laurafernandez",
         "whatsapp": "https://wa.me/573211112222",  
@@ -167,7 +167,7 @@ team = [
         "name": "Andres Aviles de la rosa",
         "role": "Backend Developer",
         "bio": "Desarrollador backend con experiencia en Python, Flask y APIs para analítica criminal.",
-        "image": "CrimeioLogo.jpg",
+        "image": "broko.jpeg",
         "github": "https://github.com/carlosgomez",
         "linkedin": "https://linkedin.com/in/carlosgomez",
         "whatsapp": "https://wa.me/573233334444",
@@ -177,7 +177,7 @@ team = [
         "name": "Angel Gabriel Ortega Corzo",
         "role": "UX/UI Designer",
         "bio": "Diseñadora centrada en el usuario, con enfoque en experiencias visuales intuitivas y accesibles.",
-        "image": "CrimeioLogo.jpg",
+        "image": "Angelo.jpeg",
         "github": "https://github.com/anaruiz",
         "linkedin": "https://linkedin.com/in/anaruiz",
         "whatsapp": "https://wa.me/573255556666",
@@ -187,7 +187,7 @@ team = [
         "name": "Santiago Cardenas Jotty",
         "role": "ML Engineer",
         "bio": "Ingeniero de Machine Learning con foco en modelos de clasificación geoespacial.",
-        "image": "CrimeioLogo.jpg",
+        "image": "Jottynha.jpeg",
         "github": "https://github.com/diegotorres",
         "linkedin": "https://linkedin.com/in/diegotorres",
         "whatsapp": "https://wa.me/573243652661",
@@ -200,7 +200,7 @@ st.markdown('<div class="team-container">', unsafe_allow_html=True)
 
 for member in team:
     
-    image_path = os.path.join("assets", member["image"])
+    image_path = os.path.join("assets", "team" ,member["image"])
     img = load_image(image_path)
     
    

@@ -103,22 +103,22 @@ Team members and roles in the project: data analysis, visual development, and st
         <th>Role</th>
     </tr>
     <tr>
-        <td><img src="https://via.placeholder.com/80" class="team-photo"></td>
+        <td><img src="./assets/team/Zaid.jpg" class="team-photo"></td>
         <td>Zaid Pantoja</td>
         <td>Model Administrator</td>
     </tr>
     <tr>
-        <td><img src="https://via.placeholder.com/80" class="team-photo"></td>
+        <td><img src="./assets/team/Jottynha.jpeg" class="team-photo"></td>
         <td>Santigo Cardenas </td>
         <td>Comparative zones</td>
     </tr>
     <tr>
-        <td><img src="https://via.placeholder.com/80" class="team-photo"></td>
+        <td><img src="./assets/team/Angelo.jpeg" class="team-photo"></td>
         <td>Angel Ortega</td>
         <td>Map feature</td>
     </tr>
     <tr>
-        <td><img src="https://via.placeholder.com/80" class="team-photo"></td>
+        <td><img src="./assets/team/broko.jpeg" class="team-photo"></td>
         <td>Andres Aviles</td>
         <td>Comparative zones</td>
     </tr>
