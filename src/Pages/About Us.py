@@ -4,10 +4,9 @@ import os
 from io import BytesIO
 import base64
 
-
 st.set_page_config(
-    page_title="Team",
-    page_icon="👥",  
+    page_title="About Us",
+    page_icon="👥",
     layout="wide"
 )
 
@@ -21,6 +20,31 @@ html, body, [class*="css"] {
     font-family: 'Poppins', sans-serif;
     background-color: #0e1117;
     color: #E0E0E0;
+}
+
+.about-section {
+    padding: 2rem 5%;
+    text-align: center;
+    color: #E0E0E0;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #ff9791;
+}
+
+.about-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.about-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 1000px;
+    margin: 0 auto;
+    color: #cccccc;
 }
 
 .title {
@@ -47,7 +71,7 @@ html, body, [class*="css"] {
 
 .team-container {
     display: flex;
-    flex-wrap: wrap ;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 2rem;
     padding: 2rem 5%;
@@ -58,8 +82,9 @@ html, body, [class*="css"] {
     background-color: #1c1f26;
     border-radius: 15px;
     padding: 1.5rem;
-    width: 500px;
-    margin:auto;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     text-align: center;
     transition: all 0.3s ease;
@@ -122,20 +147,29 @@ html, body, [class*="css"] {
     transform: scale(1.1);
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
-    .team-container {
-        padding: 2rem 1rem;
-    }
-    
     .team-card {
         width: 100%;
         max-width: 300px;
     }
 }
-            
-            
 </style>
+""", unsafe_allow_html=True)
+
+
+st.markdown("""
+<div class="about-section">
+    <div class="about-title">About Us</div>
+    <div class="about-text">
+        We are a passionate team of software engineering students from <strong>Jala University</strong>, currently diving deep into the world of <em>Commercial Software Engineering</em>. 
+        Our academic journey is shaping us into well-rounded professionals, trained not only in core programming and design principles, but also in real-world practices such as <strong>Quality Assurance (QA)</strong>, <strong>networking fundamentals</strong>, and <strong>software lifecycle methodologies</strong>.
+        <br><br>
+        Through our projects, we’ve worked with modern technologies like <strong>Python, React, FastAPI, PostgreSQL, Streamlit, Git</strong>, and explored tools such as <strong>Docker</strong>, <strong>Jira</strong>, and <strong>Figma</strong>. 
+        We’re also gaining hands-on experience in collaborative development, CI/CD practices, and Agile methodologies — all under the mentorship of experienced industry professionals and instructors at Jala.
+        <br><br>
+        Our goal is to not just write code, but to create meaningful solutions that solve real problems. This team reflects creativity, discipline, and a shared vision to grow as future leaders in the tech ecosystem.
+    </div>
+</div>
 """, unsafe_allow_html=True)
 
 
@@ -143,12 +177,10 @@ st.markdown('<h1 class="title">Meet The Team</h1>', unsafe_allow_html=True)
 
 
 def load_image(image_path):
-    """Carga una imagen y la redimensiona si es necesario"""
     try:
         img = Image.open(image_path)
         return img
     except FileNotFoundError:
-    
         return Image.new('RGB', (120, 120), color='#1c1f26')
 
 
@@ -196,15 +228,12 @@ team = [
 ]
 
 
-
 st.markdown('<div class="team-container">', unsafe_allow_html=True)
 
-# Mostrar 2 tarjetas por fila usando columnas
 for i in range(0, len(team), 2):
-    col1, spacer, col2 = st.columns([1, 0.1, 1])
-
-    for idx, member in enumerate(team[i:i+2]):
-        with [col1, col2][idx]:
+    cols = st.columns(2)
+    for j, member in enumerate(team[i:i+2]):
+        with cols[j]:
             image_path = os.path.join("assets", "team", member["image"])
             img = load_image(image_path)
             buffered = BytesIO()
@@ -225,45 +254,5 @@ for i in range(0, len(team), 2):
                 </div>
             </div>
             """, unsafe_allow_html=True)
-            
-            # STYLE
-            st.markdown("""
-            <style>
-            .team-card {
-                margin: 10px;
-                padding: 20px;
-                border-radius: 20px;
-                box-shadow: 0 0 10px rgba(0,0,0,0.3);
-                text-align: center;
-            }
-            .profile-pic {
-                width: 120px;
-                height: 120px;
-                object-fit: cover;
-                border-radius: 50%;
-                border: 3px solid #f87171;
-                margin-bottom: 10px;
-            }
-            .member-name {
-                font-size: 20px;
-                font-weight: bold;
-                color: white;
-                margin-bottom: 5px;
-            }
-            .member-role {
-                font-size: 16px;
-                color: #f87171;
-                margin-bottom: 10px;
-            }
-            .member-bio {
-                font-size: 14px;
-                color: #d1d5db;
-                margin-bottom: 15px;
-            }
-            .social-links a {
-                color: #f87171;
-                margin: 0 8px;
-                font-size: 18px;
-            }
-            </style>
-        """, unsafe_allow_html=True)
+
+st.markdown('</div>', unsafe_allow_html=True)
