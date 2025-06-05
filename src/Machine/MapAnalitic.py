@@ -1,52 +1,55 @@
-from openai import OpenAI
 import pandas as pd
+import requests
+import json
 
-client = OpenAI(
-    base_url="https://openrouter.ai/api/v1",
-    api_key="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",
-)
+API_KEY = ""
+MODEL = "gemini-2.0-flash"
+URL = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent?key={API_KEY}"
 
 def generar_analisis_criminalidad(df: pd.DataFrame, distritos, dias, categorias) -> str:
     if df.empty:
         return "No hay suficientes datos para generar un análisis."
 
     prompt = f"""
-Como experto en seguridad urbana, analiza estos datos de incidentes criminales en San Francisco:
+As an expert in urban safety, analyze these crime incident records in San Francisco:
 
-- Distritos: {', '.join(distritos)}
-- Días más activos: {', '.join(dias)}
-- Tipos de crimen: {', '.join(categorias)}
-- Total de incidentes analizados: {len(df)}
+- Districts: {', '.join(distritos)}
+- Most active days: {', '.join(dias)}
+- Crime types: {', '.join(categorias)}
+- Total incidents analyzed: {len(df)}
 
-Se presentan los primeros registros como muestra:
+Here are the first few records as a sample:
 
 {df[['Dates', 'PdDistrict', 'DayOfWeek', 'Category', 'Descript', 'Resolution']].head(10).to_csv(index=False)}
 
-Solicito:
+Please provide:
 
-1. **Patrón principal** (ej: horarios/lugares críticos).
-2. **Recomendación para autoridades** (máx 2 líneas).
-3. **Consejo ciudadano** (máx 1 línea).
+1. **Main pattern** (e.g., peak times/critical areas).
+2. **Recommendation for authorities** (max 2 lines).
+3. **Advice for citizens** (max 1 line).
 
-Respuesta en ingles y en formato txt. esto es obligatorio no envies ningun otro formato y no lo mandes dentro de un bloque de código.
+Answer must be in English and strictly in txt format (not inside a code block or markdown).
     """
 
+    headers = {"Content-Type": "application/json"}
+    payload = {
+        "contents": [
+            {
+                "parts": [
+                    {"text": prompt}
+                ]
+            }
+        ]
+    }
+
     try:
-        completion = client.chat.completions.create(
-            model="deepseek/deepseek-r1:free",
-            messages=[
-                {
-                    "role": "user",
-                    "content": prompt
-                }
-            ],
-            extra_headers={
-                "HTTP-Referer": "https://tusitio.com",  
-                "X-Title": "AnalisisCriminalSF",        
-            },
-            extra_body={}
-        )
-        return completion.choices[0].message.content
+        response = requests.post(URL, headers=headers, data=json.dumps(payload))
+        response.raise_for_status()
+
+        result = response.json()
+        
+        text = result["candidates"][0]["content"]["parts"][0]["text"]
+        return text.strip()
 
     except Exception as e:
-        return f"❌ Error al generar el análisis con IA: {str(e)}"
+        return f"❌ Error al generar el análisis con Gemini: {str(e)}"

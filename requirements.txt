@@ -40,7 +40,6 @@ tzdata==2025.2
 urllib3==2.4.0
 watchdog==6.0.0
 pymongo==4.6.3
-openai==1.84.0
 plotly
 streamlit_lottie
 streamlit_extras
