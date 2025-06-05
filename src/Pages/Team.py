@@ -166,12 +166,12 @@ team = [
     {
         "name": "Andres Aviles de la rosa",
         "role": "Backend Developer",
-        "bio": "Desarrollador backend con experiencia en Python, Flask y APIs para analítica criminal.",
+        "bio": "Desarrollador backend con experiencia en Java, Spring Boot y APIs p.",
         "image": "broko.jpeg",
-        "github": "https://github.com/carlosgomez",
-        "linkedin": "https://linkedin.com/in/carlosgomez",
-        "whatsapp": "https://wa.me/573233334444",
-        "gmail": "andres.aviles@email.com"
+        "github": "https://github.com/andresavilesdev",
+        "linkedin": "https://www.linkedin.com/in/andresavilesdev/",
+        "whatsapp": "https://wa.me/573137374995",
+        "gmail": "andresaviles0721@gmail.com"
     },
     {
         "name": "Angel Gabriel Ortega Corzo",
@@ -198,30 +198,71 @@ team = [
 
 st.markdown('<div class="team-container">', unsafe_allow_html=True)
 
-for member in team:
-    
-    image_path = os.path.join("assets", "team" ,member["image"])
-    img = load_image(image_path)
-    
-   
-    buffered = BytesIO()
-    img.save(buffered, format="JPEG")
-    img_str = base64.b64encode(buffered.getvalue()).decode()
+# Mostrar 2 tarjetas por fila usando columnas
+for i in range(0, len(team), 2):
+    col1, spacer, col2 = st.columns([1, 0.1, 1])
 
-    st.markdown(f"""
-    <div class="team-card">
-        <img class="profile-pic" src="data:image/jpeg;base64,{img_str}" alt="{member['name']}">
-        <div class="member-name">{member['name']}</div>
-        <div class="member-role">{member['role']}</div>
-        <div class="member-bio">{member['bio']}</div>
-        <div class="social-links">
-            <a href="{member['github']}" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="{member['linkedin']}" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-            <a href="{member['whatsapp']}" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="mailto:{member['gmail']}" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+    for idx, member in enumerate(team[i:i+2]):
+        with [col1, col2][idx]:
+            image_path = os.path.join("assets", "team", member["image"])
+            img = load_image(image_path)
+            buffered = BytesIO()
+            img.save(buffered, format="JPEG")
+            img_str = base64.b64encode(buffered.getvalue()).decode()
 
-
-st.markdown('</div>', unsafe_allow_html=True)
+            st.markdown(f"""
+            <div class="team-card">
+                <img class="profile-pic" src="data:image/jpeg;base64,{img_str}" alt="{member['name']}">
+                <div class="member-name">{member['name']}</div>
+                <div class="member-role">{member['role']}</div>
+                <div class="member-bio">{member['bio']}</div>
+                <div class="social-links">
+                    <a href="{member['github']}" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="{member['linkedin']}" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="{member['whatsapp']}" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:{member['gmail']}" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            
+            # STYLE
+            st.markdown("""
+            <style>
+            .team-card {
+                margin: 10px;
+                padding: 20px;
+                border-radius: 20px;
+                box-shadow: 0 0 10px rgba(0,0,0,0.3);
+                text-align: center;
+            }
+            .profile-pic {
+                width: 120px;
+                height: 120px;
+                object-fit: cover;
+                border-radius: 50%;
+                border: 3px solid #f87171;
+                margin-bottom: 10px;
+            }
+            .member-name {
+                font-size: 20px;
+                font-weight: bold;
+                color: white;
+                margin-bottom: 5px;
+            }
+            .member-role {
+                font-size: 16px;
+                color: #f87171;
+                margin-bottom: 10px;
+            }
+            .member-bio {
+                font-size: 14px;
+                color: #d1d5db;
+                margin-bottom: 15px;
+            }
+            .social-links a {
+                color: #f87171;
+                margin: 0 8px;
+                font-size: 18px;
+            }
+            </style>
+        """, unsafe_allow_html=True)
