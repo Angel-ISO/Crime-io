@@ -166,7 +166,7 @@ team = [
     {
         "name": "Andres Aviles de la rosa",
         "role": "Backend Developer",
-        "bio": "Desarrollador backend con experiencia en Java, Spring Boot y APIs p.",
+        "bio": "Desarrollador backend con experiencia en Java, Spring Boot y APIs Rest.",
         "image": "broko.jpeg",
         "github": "https://github.com/andresavilesdev",
         "linkedin": "https://www.linkedin.com/in/andresavilesdev/",
