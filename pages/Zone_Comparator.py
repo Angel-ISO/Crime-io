@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from pandas.api.types import CategoricalDtype
-from pages_functions.zone_comp_funcs import get_crime_data
-from Machine.ComparatorZoneReport import generar_analisis_comparativo
+from src.pages_functions.zone_comp_funcs import get_crime_data
+from src.Machine.ComparatorZoneReport import generar_analisis_comparativo
 
 
 st.set_page_config(
