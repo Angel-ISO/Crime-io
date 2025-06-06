@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from pages_functions.zone_comp_funcs import get_crime_data
+from src.pages_functions.zone_comp_funcs import get_crime_data
 
 st.set_page_config(page_title="Zone Comparator", page_icon="🌍")
 

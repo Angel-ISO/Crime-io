@@ -1,5 +1,5 @@
 import pandas as pd
-from config.db import conn
+from src.config.db import conn
 
 def get_crime_data():
     """

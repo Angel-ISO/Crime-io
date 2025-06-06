@@ -2,8 +2,8 @@ import streamlit as st
 import pandas as pd
 import pydeck as pdk
 from datetime import time
-from config.db import conn
-from Machine.MapAnalitic import generar_analisis_criminalidad
+from src.config.db import conn
+from src.Machine.MapAnalitic import generar_analisis_criminalidad
 
 
 st.set_page_config(page_title="Crime Map", page_icon="././assets/LogoNobg.png")
