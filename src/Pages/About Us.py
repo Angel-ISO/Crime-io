@@ -5,11 +5,10 @@ from io import BytesIO
 import base64
 
 st.set_page_config(
-    page_title="About Us",
+    page_title="Sobre Nosotros",
     page_icon="👥",
     layout="wide"
 )
-
 
 st.markdown("""
 <style>
@@ -159,21 +158,21 @@ html, body, [class*="css"] {
 
 st.markdown("""
 <div class="about-section">
-    <div class="about-title">About Us</div>
+    <div class="about-title">Sobre Nosotros</div>
     <div class="about-text">
-        We are a passionate team of software engineering students from <strong>Jala University</strong>, currently diving deep into the world of <em>Commercial Software Engineering</em>. 
-        Our academic journey is shaping us into well-rounded professionals, trained not only in core programming and design principles, but also in real-world practices such as <strong>Quality Assurance (QA)</strong>, <strong>networking fundamentals</strong>, and <strong>software lifecycle methodologies</strong>.
+        Somos un equipo apasionado de estudiantes de Ingeniería de Software de la <strong>Universidad Jala</strong>, actualmente inmersos en el mundo de la <em>Ingeniería de Software Comercial</em>.
+        Nuestra formación académica nos está preparando como profesionales integrales, capacitados no solo en principios de programación y diseño, sino también en prácticas reales como <strong>Aseguramiento de la Calidad (QA)</strong>, <strong>fundamentos de redes</strong> y <strong>metodologías del ciclo de vida del software</strong>.
         <br><br>
-        Through our projects, we’ve worked with modern technologies like <strong>Python, React, FastAPI, PostgreSQL, Streamlit, Git</strong>, and explored tools such as <strong>Docker</strong>, <strong>Jira</strong>, and <strong>Figma</strong>. 
-        We’re also gaining hands-on experience in collaborative development, CI/CD practices, and Agile methodologies — all under the mentorship of experienced industry professionals and instructors at Jala.
+        A través de nuestros proyectos, hemos trabajado con tecnologías modernas como <strong>Python, React, FastAPI, PostgreSQL, Streamlit, Git</strong>, y explorado herramientas como <strong>Docker</strong>, <strong>Jira</strong> y <strong>Figma</strong>.
+        También estamos adquiriendo experiencia práctica en desarrollo colaborativo, prácticas CI/CD y metodologías ágiles, todo bajo la mentoría de profesionales de la industria e instructores de Jala.
         <br><br>
-        Our goal is to not just write code, but to create meaningful solutions that solve real problems. This team reflects creativity, discipline, and a shared vision to grow as future leaders in the tech ecosystem.
+        Nuestro objetivo no es solo escribir código, sino crear soluciones significativas que resuelvan problemas reales. Este equipo refleja creatividad, disciplina y una visión compartida de crecer como futuros líderes en el ecosistema tecnológico.
     </div>
 </div>
 """, unsafe_allow_html=True)
 
 
-st.markdown('<h1 class="title">Meet The Team</h1>', unsafe_allow_html=True)
+st.markdown('<h1 class="title">Conoce al Equipo</h1>', unsafe_allow_html=True)
 
 
 def load_image(image_path):
@@ -184,21 +183,21 @@ def load_image(image_path):
         return Image.new('RGB', (120, 120), color='#1c1f26')
 
 
-team = [
+equipo = [
     {
         "name": "Zaid Pantoja Manosalva",
-        "role": "Machine Learning Specialist – ML Model Developer",
-        "bio": "Data enthusiast with a strong focus on predictive analysis and advanced data visualization. Responsible for building and training the machine learning model used in the system.",
+        "role": "Especialista en Machine Learning – Desarrollador del Modelo ML",
+        "bio": "Entusiasta de los datos con enfoque en análisis predictivo y visualización avanzada. Encargado de construir y entrenar el modelo de machine learning del sistema.",
         "image": "Zaid.jpg",  
         "github": "https://github.com/Alberthzaid",
         "linkedin": "https://www.linkedin.com/in/alberth-zaid-a42aa8222/",
-        "whatsapp": "https://wa.me/57 318 5182953",  
+        "whatsapp": "https://wa.me/573185182953",  
         "gmail": "alberthzaid2003@gmail.com"
     },
     {
         "name": "Andres Aviles de la Rosa",
-        "role": "Backend Developer – Zone Comparator Designer",
-        "bio": "Backend developer with experience in Java, Spring Boot, and RESTful APIs. In charge of implementing the Zone Comparator feature to support geographic comparisons in the system.",
+        "role": "Desarrollador Backend – Diseñador del Comparador de Zonas",
+        "bio": "Desarrollador backend con experiencia en Java, Spring Boot y APIs RESTful. Encargado de implementar el comparador de zonas para análisis geográfico en el sistema.",
         "image": "broko.jpeg",
         "github": "https://github.com/andresavilesdev",
         "linkedin": "https://www.linkedin.com/in/andresavilesdev/",
@@ -207,8 +206,8 @@ team = [
     },
     {
         "name": "Angel Gabriel Ortega Corzo",
-        "role": "Backend Developer – Interactive Map Feature Designer",
-        "bio": "User-centered designer focused on creating intuitive and accessible APIs-Rest experiences. Responsible for developing the interactive map feature for geospatial visualization.",
+        "role": "Desarrollador Backend – Diseñador del Mapa Interactivo",
+        "bio": "Diseñador enfocado en experiencias API REST intuitivas y accesibles. Responsable de desarrollar la funcionalidad del mapa interactivo para visualización geoespacial.",
         "image": "Angelo.jpeg",
         "github": "https://github.com/Angel-ISO",
         "linkedin": "https://www.linkedin.com/in/angel-gabriel-ortega/",
@@ -217,8 +216,8 @@ team = [
     },
     {
         "name": "Santiago Cardenas Jotty",
-        "role": "UI Designer – Home & Team Pages Creator",
-        "bio": "Machine Learning engineer with a passion for geospatial classification models. Designed and implemented the Home and Team pages to provide a cohesive and user-friendly interface.",
+        "role": "Diseñador UI – Creador de las páginas Inicio y Equipo",
+        "bio": "Ingeniero en Machine Learning con pasión por modelos de clasificación geoespacial. Diseñó e implementó las páginas de Inicio y Equipo para una interfaz cohesiva y amigable.",
         "image": "Jottynha.jpeg",
         "github": "https://github.com/santiagocard123",
         "linkedin": "https://www.linkedin.com/in/santiago-c%C3%A1rdenas-jotty-6a93ba360/",
@@ -227,14 +226,13 @@ team = [
     }
 ]
 
-
 st.markdown('<div class="team-container">', unsafe_allow_html=True)
 
-for i in range(0, len(team), 2):
+for i in range(0, len(equipo), 2):
     cols = st.columns(2)
-    for j, member in enumerate(team[i:i+2]):
+    for j, miembro in enumerate(equipo[i:i+2]):
         with cols[j]:
-            image_path = os.path.join("assets", "team", member["image"])
+            image_path = os.path.join("assets", "team", miembro["image"])
             img = load_image(image_path)
             buffered = BytesIO()
             img.save(buffered, format="JPEG")
@@ -242,15 +240,15 @@ for i in range(0, len(team), 2):
 
             st.markdown(f"""
             <div class="team-card">
-                <img class="profile-pic" src="data:image/jpeg;base64,{img_str}" alt="{member['name']}">
-                <div class="member-name">{member['name']}</div>
-                <div class="member-role">{member['role']}</div>
-                <div class="member-bio">{member['bio']}</div>
+                <img class="profile-pic" src="data:image/jpeg;base64,{img_str}" alt="{miembro['name']}">
+                <div class="member-name">{miembro['name']}</div>
+                <div class="member-role">{miembro['role']}</div>
+                <div class="member-bio">{miembro['bio']}</div>
                 <div class="social-links">
-                    <a href="{member['github']}" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="{member['linkedin']}" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="{member['whatsapp']}" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="mailto:{member['gmail']}" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="{miembro['github']}" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="{miembro['linkedin']}" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="{miembro['whatsapp']}" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="mailto:{miembro['gmail']}" target="_blank" title="Correo"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
             """, unsafe_allow_html=True)

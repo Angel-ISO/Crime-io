@@ -2,15 +2,14 @@ import pandas as pd
 import requests
 import json
 
-API_KEY = ""
-MODEL = "gemini-2.0-flash"
-URL = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent?key={API_KEY}"
+CLAVE_API = ""
+MODELO = "gemini-2.0-flash"
+URL = f"https://generativelanguage.googleapis.com/v1beta/models/{MODELO}:generateContent?key={CLAVE_API}"
 
 def generar_analisis_comparativo(df1: pd.DataFrame, df2: pd.DataFrame, zona1: str, zona2: str, pregunta: str) -> str:
     if df1.empty or df2.empty:
         return "No hay suficientes datos para generar un análisis comparativo."
 
-    
     dias1 = df1["DayOfWeek"].mode().tolist()
     dias2 = df2["DayOfWeek"].mode().tolist()
     
@@ -18,36 +17,36 @@ def generar_analisis_comparativo(df1: pd.DataFrame, df2: pd.DataFrame, zona1: st
     categorias2 = df2["Category"].value_counts().head(3).index.tolist()
 
     prompt = f"""
-As a public safety analyst, compare crime trends between two areas in San Francisco:
+Como analista de seguridad pública, compara las tendencias del crimen entre dos zonas de San Francisco:
 
-Zone A: {zona1}
-- Total incidents: {len(df1)}
-- Most active days: {', '.join(dias1)}
-- Top crimes: {', '.join(categorias1)}
+Zona A: {zona1}
+- Incidentes totales: {len(df1)}
+- Días más activos: {', '.join(dias1)}
+- Delitos más comunes: {', '.join(categorias1)}
 
-Zone B: {zona2}
-- Total incidents: {len(df2)}
-- Most active days: {', '.join(dias2)}
-- Top crimes: {', '.join(categorias2)}
+Zona B: {zona2}
+- Incidentes totales: {len(df2)}
+- Días más activos: {', '.join(dias2)}
+- Delitos más comunes: {', '.join(categorias2)}
 
-User question: {pregunta}
+Pregunta del usuario: {pregunta}
 
-Here is a sample of incidents for each zone:
+Aquí tienes una muestra de incidentes por zona:
 
-Zone A sample:
+Muestra de la Zona A:
 {df1[['Dates', 'PdDistrict', 'DayOfWeek', 'Category', 'Descript', 'Resolution']].head(5).to_csv(index=False)}
 
-Zone B sample:
+Muestra de la Zona B:
 {df2[['Dates', 'PdDistrict', 'DayOfWeek', 'Category', 'Descript', 'Resolution']].head(5).to_csv(index=False)}
 
-Provide:
+Proporciona:
 
-1. Brief comparison of patterns (max 3 lines).
-2. Recommendation for city officials (max 2 lines).
-3. Citizen advice (1 line).
-4. Final summary sentence.
+1. Comparación breve de los patrones (máx. 3 líneas).
+2. Recomendación para las autoridades de la ciudad (máx. 2 líneas).
+3. Consejo para los ciudadanos (1 línea).
+4. Frase de resumen final.
 
-Answer must be in English and strictly in raw .txt format (no markdown, no code blocks).
+La respuesta debe estar en español y estrictamente en formato .txt sin markdown ni bloques de código.
     """
 
     headers = {"Content-Type": "application/json"}
@@ -58,10 +57,10 @@ Answer must be in English and strictly in raw .txt format (no markdown, no code 
     }
 
     try:
-        response = requests.post(URL, headers=headers, data=json.dumps(payload))
-        response.raise_for_status()
-        result = response.json()
-        text = result["candidates"][0]["content"]["parts"][0]["text"]
-        return text.strip()
+        respuesta = requests.post(URL, headers=headers, data=json.dumps(payload))
+        respuesta.raise_for_status()
+        resultado = respuesta.json()
+        texto = resultado["candidates"][0]["content"]["parts"][0]["text"]
+        return texto.strip()
     except Exception as e:
         return f"❌ Error al generar análisis con Gemini: {str(e)}"
