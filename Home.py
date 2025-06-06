@@ -4,7 +4,7 @@ import requests
 from streamlit_extras.colored_header import colored_header
 
 st.set_page_config(
-    page_title="Crime.io | Crime Prediction Analytics",
+    page_title="Crime.io | Analítica Predictiva de Criminalidad",
     page_icon="./assets/LogoNobg.png",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -199,7 +199,7 @@ st.markdown("""
             background: var(--secondary);
         }
         
-        /* Responsive adjustments */
+        /* Ajustes responsivos */
         @media (max-width: 1200px) {
             .glass-container {
                 padding: 1.5rem;
@@ -231,7 +231,7 @@ st.markdown("""
 st.markdown("""
     <div class="glass-container fade-in">
         <h1 class="title-text glow">Crime<span class="highlight">.io</span></h1>
-        <p class="subtitle-text">Predictive Crime Analytics Platform</p>
+        <p class="subtitle-text">Plataforma de Analítica Predictiva de Criminalidad</p>
     </div>
 """, unsafe_allow_html=True)
 
@@ -241,19 +241,19 @@ if lottie_crime:
 st.markdown("""
     <div class="fade-in" style="animation-delay: 0.4s">
         <p style="text-align: center; font-size: clamp(0.9rem, 2vw, 1.1rem); max-width: 800px; margin: 0 auto 2rem auto; color: var(--light)">
-            Our project identifies and predicts high-crime areas in San Francisco using machine learning 
-            techniques on historical data including geographic coordinates, crime types, and frequency.
+            Nuestro proyecto identifica y predice áreas de alta criminalidad en San Francisco utilizando técnicas
+            de aprendizaje automático en datos históricos que incluyen coordenadas geográficas, tipos de delitos y frecuencia.
         </p>
     </div>
 """, unsafe_allow_html=True)
 
-st.markdown('<h2 style="text-align: center; margin: 3rem 0 1.5rem 0; color: var(--lighter); font-size: clamp(1.5rem, 3vw, 2rem)">Key Features</h2>', unsafe_allow_html=True)
+st.markdown('<h2 style="text-align: center; margin: 3rem 0 1.5rem 0; color: var(--lighter); font-size: clamp(1.5rem, 3vw, 2rem)">Características Principales</h2>', unsafe_allow_html=True)
 
 features = [
-    {"title": "Crime Prediction", "desc": "Advanced ML models forecast crime hotspots before they happen"},
-    {"title": "Global Scalability",  "desc": "Designed to work with any city's georeferenced crime data"},
-    {"title": "Interactive Maps",  "desc": "Visualize crime patterns with dynamic heatmaps and clusters"},
-    {"title": "Preventive Strategies", "desc": "Data-driven recommendations for crime prevention"}
+    {"title": "Predicción de Delitos", "desc": "Modelos avanzados de ML predicen zonas críticas antes de que ocurran"},
+    {"title": "Escalabilidad Global",  "desc": "Diseñado para trabajar con datos georreferenciados de cualquier ciudad"},
+    {"title": "Mapas Interactivos",  "desc": "Visualiza patrones de criminalidad con mapas de calor dinámicos"},
+    {"title": "Estrategias Preventivas", "desc": "Recomendaciones basadas en datos para la prevención del crimen"}
 ]
 
 cols = st.columns(4)
@@ -268,20 +268,20 @@ for i, feature in enumerate(features):
 
 st.markdown("""
     <div style="margin: 4rem 0;  backdrop-filter: blur(15px); background: rgba(255, 255, 255, 0.05); padding: 2rem;  border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); border: 1px solid #333; width: 90%; max-width: 1200px; margin-left: auto; margin-right: auto;">
-        <h2 style="color: var(--lighter); font-family: 'Montserrat'; text-align: center; margin-bottom: 1.5rem; font-size: clamp(1.2rem, 2.5vw, 1.8rem);">Our Mission</h2>
+        <h2 style="color: var(--lighter); font-family: 'Montserrat'; text-align: center; margin-bottom: 1.5rem; font-size: clamp(1.2rem, 2.5vw, 1.8rem);">Nuestra Misión</h2>
         <p style="font-size: clamp(0.9rem, 1.5vw, 1.1rem); line-height: 1.8; text-align: justify; color: var(--light)">
-            Crime.io is an intelligent visualization and analysis tool designed to anticipate risk areas, 
-            optimize urban security decision-making, and promote data-driven preventive strategies. 
-            While we started with San Francisco data, our model is scalable and applicable to any city 
-            worldwide with sufficient georeferenced information, enabling global impact in crime 
-            planning and prevention.
+            Crime.io es una herramienta inteligente de visualización y análisis diseñada para anticipar zonas de riesgo,
+            optimizar la toma de decisiones en seguridad urbana y promover estrategias preventivas basadas en datos.
+            Aunque comenzamos con datos de San Francisco, nuestro modelo es escalable y aplicable a cualquier ciudad
+            del mundo con suficiente información georreferenciada, permitiendo un impacto global en la planificación
+            y prevención del crimen.
         </p>
     </div>
 """, unsafe_allow_html=True)
 
 colored_header(
-    label="See It In Action",
-    description="Explore our interactive crime prediction dashboard",
+    label="Véalo en Acción",
+    description="Explore nuestro panel interactivo de predicción de criminalidad",
     color_name="red-70",
 )
 
@@ -289,19 +289,19 @@ col1, col2 = st.columns([2, 1])
 with col1:
     st.markdown("""
         <div style="margin-top: 1rem;">
-            <h3 style="color: var(--lighter); font-family: 'Montserrat'; font-size: clamp(1.1rem, 2vw, 1.5rem);">Real-time Crime Analytics</h3>
+            <h3 style="color: var(--lighter); font-family: 'Montserrat'; font-size: clamp(1.1rem, 2vw, 1.5rem);">Analítica de Criminalidad en Tiempo Real</h3>
             <p style="font-size: clamp(0.8rem, 1.3vw, 1rem); line-height: 1.8; color: var(--light)">
-                Our interactive dashboard provides real-time insights into crime patterns with:
+                Nuestro panel interactivo proporciona información en tiempo real sobre patrones de criminalidad con:
                 <ul style="font-size: clamp(0.8rem, 1.3vw, 1rem); line-height: 2; color: var(--light)">
-                    <li>Historical crime trend analysis</li>
-                    <li>Predictive hotspot mapping</li>
-                    <li>Crime type classification</li>
-                    <li>Temporal pattern recognition</li>
+                    <li>Análisis de tendencias históricas de criminalidad</li>
+                    <li>Mapas predictivos de zonas críticas</li>
+                    <li>Clasificación de tipos de delitos</li>
+                    <li>Reconocimiento de patrones temporales</li>
                 </ul>
             </p>
             <a href="/Map" target="_self" style="text-decoration: none;">
                 <div class="button-elegant">
-                    🚀 Explore Dashboard
+                    🚀 Explorar Panel
                 </div>
             </a>
         </div>
@@ -314,7 +314,7 @@ with col2:
 st.markdown("""
     <div style="margin-top: 5rem; padding: 2rem 0; text-align: center; border-top: 1px solid #333;">
         <p style="color: #6c757d; font-size: clamp(0.7rem, 1.2vw, 0.9rem);">
-            © 2025 Crime.io | Predictive Crime Analytics Platform
+            © 2025 Crime.io | Plataforma de Analítica Predictiva de Criminalidad
         </p>
     </div>
 """, unsafe_allow_html=True)
