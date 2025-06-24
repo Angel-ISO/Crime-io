@@ -2,7 +2,7 @@ import pandas as pd
 import requests
 import json
 
-CLAVE_API = "AIzaSyDsX2eb9mywmfFFBQ_tchtuWvrQG6TpMJg"
+CLAVE_API = ""
 MODELO = "gemini-2.0-flash"
 URL = f"https://generativelanguage.googleapis.com/v1beta/models/{MODELO}:generateContent?key={CLAVE_API}"
 
