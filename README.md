@@ -42,7 +42,11 @@
 Geographic visualization of crime incidents filtered by district, date, and crime type. Includes interactive markers and clustering for high-density areas.
 </p>
 
-![image](./assets/mapa_preview.png)
+1. **Interactive Map**
+![image](./assets/features/map/Map1.png)
+
+2. **Intelligent analysis**
+![image](./assets/features/map/Map2.png)
 
 </div>
 </details>
@@ -61,7 +65,13 @@ Dashboard with with the comparison of the zones of interest.
 </p>
 
 1. **zone comparison**
-![image](./assets/grafico1.png)
+![image](./assets/features/Zones/Zone1.png)
+
+2. **Comparison of the zones of interest**
+![image](./assets/features/Zones/Zone2.png)
+
+3. **integrated of chatbot to ask any question about the zones**
+![image](./assets/features/Zones/Zone3.png)
 
 
 </div>
@@ -77,11 +87,11 @@ Dashboard with with the comparison of the zones of interest.
 Machine learning model to predict high-risk zones based on historical data. Includes probabilities and evaluation metrics.
 </p>
 
-1. **Hotspot Prediction**  
-![image](./assets/modelo1.png)
+1. **Rag implementation**  
+![image](./assets/features/Chat/Chat1.png)
 
-2. **Feature Importance**  
-![image](./assets/modelo2.png)
+2. **Ask any question about sanfrancisco criminality**
+![image](./assets/features/Chat/Chat2.png)
 
 </div>
 </details>
