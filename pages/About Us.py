@@ -185,7 +185,7 @@ def load_image(image_path):
 
 equipo = [
     {
-        "name": "Zaid Pantoja Manosalva",
+        "name": "Zaid Pantoja Manosalva Rappi",
         "role": "Especialista en Machine Learning – Desarrollador del Modelo ML",
         "bio": "Entusiasta de los datos con enfoque en análisis predictivo y visualización avanzada. Encargado de construir y entrenar el modelo de machine learning del sistema.",
         "image": "Zaid.jpg",  
@@ -195,7 +195,7 @@ equipo = [
         "gmail": "alberthzaid2003@gmail.com"
     },
     {
-        "name": "Andres Aviles de la Rosa",
+        "name": "Andres Aviles de la Rosa Broko",
         "role": "Desarrollador Backend – Diseñador del Comparador de Zonas",
         "bio": "Desarrollador backend con experiencia en Java, Spring Boot y APIs RESTful. Encargado de implementar el comparador de zonas para análisis geográfico en el sistema.",
         "image": "broko.jpeg",
@@ -205,7 +205,7 @@ equipo = [
         "gmail": "andresaviles0721@gmail.com"
     },
     {
-        "name": "Angel Gabriel Ortega Corzo",
+        "name": "Angel Gabriel Ortega Corzo Totu",
         "role": "Desarrollador Backend – Diseñador del Mapa Interactivo",
         "bio": "Diseñador enfocado en experiencias API REST intuitivas y accesibles. Responsable de desarrollar la funcionalidad del mapa interactivo para visualización geoespacial.",
         "image": "Angelo.jpeg",
